@@ -4,25 +4,31 @@ const inquirer = require("inquirer");
 const fs = require("fs");
 const util = require("util");
 
-const firstMember = (answers) => {
-    return inquirer.prompt(
+class Questions {
+
+firstMember() {
+    inquirer
+    .prompt(
         {
             type: "input",
             name: "mananger",
             message: "What is the name of your team manager?"
-        })
-    };
+        });
+    then.addAMember();
+}
 
-const anotherEngineer = () => {
-    return inquirer.prompt(
+anotherEngineer() {
+    inquirer
+    .prompt(
     {
         type: "input",
         name: "engineer",
         message: "What is the name of the Engineer?"}
     )};
 
-const anotherIntern = () => {
-    return inquirer.prompt(
+anotherIntern() {
+    inquirer
+    .prompt(
     {
         type: "input",
         name: "intern",
@@ -30,8 +36,9 @@ const anotherIntern = () => {
     })
 };
     
-const addAMember = () => {
-    return inquirer.prompt([
+addAMember() {
+    inquirer
+    .prompt([
     {
         type: "input",
         name: "email",
@@ -58,25 +65,29 @@ const addAMember = () => {
         message: "What is their email address?"
     }
 ])
+then.anotherMember();
 };
 
-const anotherMember = () => {
-    return inquirer.prompt(
+anotherMember() {
+    inquirer
+    .prompt(
     {
         type: "list",
         name: "another",
         message: "Would you like to...",
         choices: ["Add an engineer?", "Add an intern?", "Finish building your team?"]
     })
+    then.whatNext();
 };
 
-const whatNext = () => {
+whatNext() {
     if (anotherMember(answers.another)==="Add an engineer?") {
-        anotherEngineer()
+        then.anotherEngineer()
     } else if (anotherMember(answers.another)==="Add an intern?") {
-        anotherIntern()
+        then.anotherIntern()
     } else if (anotherMember(answers.another)==="Finish building your team?") {
-        writeIt()
+        then.writeIt()
+}
 }
 }
 
@@ -86,15 +97,16 @@ const addMember = require("./Questions/AddAMember");
 const writeHTML = util.promisify(fs.writeFile);
 
 const init = () => {
-    firstMember()
-    .then(addAMember())
-    .then(anotherMember())
-    .then(whatNext())
+    const questions = new Questions()
+    questions.firstMember()
+    
 
-};
+}
+ init();
 
-init();
+
 
 const writeIt = () => {
 writeHTML("script.HTML", addMember(answers))
 };
+
