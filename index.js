@@ -13,24 +13,29 @@ const firstMember = (answers) => {
         })
     };
 
+const anotherEngineer = () => {
+    return inquirer.prompt(
     {
         type: "input",
         name: "engineer",
-        message: "What is the name of the Engineer?"
-    }
-    
+        message: "What is the name of the Engineer?"}
+    )};
+
+const anotherIntern = () => {
+    return inquirer.prompt(
     {
         type: "input",
         name: "intern",
         message: "What is the name of the Intern?"
-    }
+    })
+};
     
 const addAMember = () => {
     return inquirer.prompt([
     {
         type: "input",
         name: "email",
-        message: "What is thier email address?"
+        message: "What is their email address?"
     },
     {
         type: "input",
@@ -65,27 +70,31 @@ const anotherMember = () => {
     })
 };
 
+const whatNext = () => {
+    if (anotherMember(answers.another)==="Add an engineer?") {
+        anotherEngineer()
+    } else if (anotherMember(answers.another)==="Add an intern?") {
+        anotherIntern()
+    } else if (anotherMember(answers.another)==="Finish building your team?") {
+        writeIt()
+}
+}
 
 
-if (anotherMember(answers.another) == "Yes") {
-
-    return inquirer.prompt(
-        {
-            type: "input",
-            name: "engineerIntern",
-            message: "Are you entering an engineer or an intern?"
-        });
-    };
 
 const addMember = require("./Questions/AddAMember");
 const writeHTML = util.promisify(fs.writeFile);
 
 const init = () => {
     firstMember()
-    .then((answers) => writeHTML("script.HTML", addMember(answers)))
-    .catch((err) => console.log(err));
+    .then(addAMember())
+    .then(anotherMember())
+    .then(whatNext())
+
 };
 
 init();
-        
-    
+
+const writeIt = () => {
+writeHTML("script.HTML", addMember(answers))
+};
