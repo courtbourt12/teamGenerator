@@ -1,4 +1,4 @@
-const generateHTML = (answers) => {
+const generateHTML = () => {
 `<!DOCTYPE html>
 <html lang="en">
 
@@ -13,34 +13,34 @@ const generateHTML = (answers) => {
 <body>
     <section class = "teamLeader"> 
         <h1>Team Manager</h1>
-        <h2>${firstMember(answers.manager)}</h2>
+        <h2>${theManager.name}</h2>
         <ul>
-            <li>Email: ${firstMember(answers.email)}</li>
-            <li>GitHub: ${firstMember(answers.github)}</li>
-            <li>Office Number: ${firstMember(answers.number)}</li>
-            <li>Employee ID: ${firstMember(answers.id)}</li>
+            <li>Email: ${theManager.email}</li>
+            <li>GitHub: ${theManager.github}</li>
+            <li>Office Number: ${theManager.number}</li>
+            <li>Employee ID: ${theManager.id}</li>
         </ul>
     </section>
 
     <section class = "engineer"> 
         <h1>Engineer</h1>
-        <h2>${engineer(answers.manager)}</h2>
+        <h2>${theEngineers.manager}</h2>
         <ul>
-            <li>Email: ${engineer(answers.email)}</li>
-            <li>GitHub: ${engineer(answers.github)}</li>
-            <li>Office Number: ${engineer(answers.number)}</li>
-            <li>Employee ID: ${engineer(answers.id)}</li>
+            <li>Email: ${theEngineers.email}</li>
+            <li>GitHub: ${theEngineers.github}</li>
+            <li>Office Number: ${theEngineers.number}</li>
+            <li>Employee ID: ${theEngineers.id}</li>
         </ul>
     </section>
 
     <section class = "intern"> 
         <h1>Intern</h1>
-        <h2>${intern(answers.manager)}</h2>
+        <h2>${theInterns.manager}</h2>
         <ul>
-            <li>Email: ${intern(answers.email)}</li>
-            <li>GitHub: ${intern(answers.github)}</li>
-            <li>Office Number: ${intern(answers.number)}</li>
-            <li>Employee ID: ${intern(answers.id)}</li>
+            <li>Email: ${theInterns.email}</li>
+            <li>GitHub: ${theInterns.github}</li>
+            <li>Office Number: ${theInterns.number}</li>
+            <li>Employee ID: ${theInterns.id}</li>
         </ul>
     </section>
 </body>`
