@@ -3,37 +3,64 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 const util = require("util");
+const theEmployees = [];
 
-const theManager = [];
-const theEngineers = [];
-const theInterns = [];
+class theManager {
+    constructor (name, email, github, number, id) {
+        this.name = name;
+        this.email = email;
+        this.github = github;
+        this.number = number;
+        this.id = id;
+    }
+}
+
+class theEngineers {
+    constructor (name, email, github, number, id) {
+        this.name = name;
+        this.email = email;
+        this.github = github;
+        this.number = number;
+        this.id = id;
+    }
+}
+
+class theInterns {
+    constructor (name, email, github, number, id) {
+        this.name = name;
+        this.email = email;
+        this.github = github;
+        this.number = number;
+        this.id = id;
+    }
+}
 
 const firstMember = () => {
     return inquirer
     .prompt([
         {
             type: "input",
-            name: "mananger",
+            name: "myManager",
             message: "What is the name of your team manager?"
         },
         {
             type: "input",
-            name: "email",
+            name: "Memail",
             message: "What is their email address?"
         },
         {
             type: "input",
-            name: "github",
+            name: "Mgithub",
             message: "What is their github username?"
         },
         {
             type: "input",
-            name: "number",
+            name: "Mnumber",
             message: "What is their office number?"
         },
         {
             type: "input",
-            name: "id",
+            name: "Mid",
             message: "What is their employee ID?"
         },
         {
@@ -44,14 +71,15 @@ const firstMember = () => {
         }
 ])
 .then((answers) => {
-    theManager.push('Managers:', answers)
-    console.log(theManager);
+    const {myManager, Memail, Mgithub, Mnumber, Mid} = answers;
+    const theManagerCard = new theManager (myManager, Memail, Mgithub, Mnumber, Mid);
+    theEmployees.push(theManagerCard);
     if ((answers.another) === "Add an engineer?") {
         engineer()
     } else if ((answers.another) === "Add an intern?") {
         intern()
-    // } else if ((answers.another) === "Finish building your team?") {
-    //     writeIt()
+    } else if ((answers.another) === "Finish building your team?") {
+        writeIt()
     }
 })
 }
@@ -61,27 +89,27 @@ const engineer = () => {
     .prompt([
         {
             type: "input",
-            name: "engineer",
+            name: "engineering",
             message: "What is the name of the Engineer?"
         },
         {
             type: "input",
-            name: "email",
+            name: "Eemail",
             message: "What is their email address?"
         },
         {
             type: "input",
-            name: "github",
+            name: "Egithub",
             message: "What is their github username?"
         },
         {
             type: "input",
-            name: "number",
+            name: "Enumber",
             message: "What is their office number?"
         },
         {
             type: "input",
-            name: "id",
+            name: "Eid",
             message: "What is their employee ID?"
         },
         {
@@ -92,17 +120,17 @@ const engineer = () => {
         }
 ])
 .then((answers) => {
-    theEngineers.push('Engineers:', answers)
-    console.log(theEngineers);
+    const {engineering, Eemail, Egithub, Enumber, Eid} = answers;
+    const myEngineer = new theEngineers (engineering, Eemail, Egithub, Enumber, Eid);
+    theEmployees.push(myEngineer);
     if ((answers.another) === "Add an engineer?") {
         engineer()
     } else if ((answers.another) === "Add an intern?") {
         intern()
-    // } else if ((answers.another) === "Finish building your team?") {
-    //     writeIt()
-    // }
-}})
-// .then((answers) => writeHTML("script.HTML", addMember(answers)))
+    } else if ((answers.another) === "Finish building your team?") {
+        writeIt()
+    }
+})
 }
 
 const intern = () => {
@@ -110,27 +138,27 @@ const intern = () => {
     .prompt([
         {
             type: "input",
-            name: "intern",
+            name: "interning",
             message: "What is the name of the Intern?"
         },
         {
             type: "input",
-            name: "email",
+            name: "Iemail",
             message: "What is their email address?"
         },
         {
             type: "input",
-            name: "github",
+            name: "Igithub",
             message: "What is their github username?"
         },
         {
             type: "input",
-            name: "number",
+            name: "Inumber",
             message: "What is their office number?"
         },
         {
             type: "input",
-            name: "id",
+            name: "Iid",
             message: "What is their employee ID?"
         },
         {
@@ -141,17 +169,17 @@ const intern = () => {
         }
 ])
 .then((answers) => {
-    theInterns.push('Interns:', answers)
-    console.log(theInterns);
+    const {interning, IImail, Igithub, Inumber, Iid} = answers;
+    const myIntern = new theIntern (interning, IImail, Igithub, Inumber, Iid);
+    theEmployees.push(myIntern);
     if ((answers.another) === "Add an engineer?") {
         engineer()
     } else if ((answers.another) === "Add an intern?") {
         intern()
-    // } else if ((answers.another) === "Finish building your team?") {
-    //     writeIt()
-    // }
-}})
-// .then((answers) => writeHTML("script.HTML", addMember(answers)))
+    } else if ((answers.another) === "Finish building your team?") {
+        writeIt()
+    }
+})
 }
 
 
@@ -166,7 +194,7 @@ const init = () => {
 
 
 
-// const writeIt = () => {
-// writeHTML("script.HTML", addMember(answers))
-// };
+const writeIt = () => {
+writeHTML("script.HTML", addMember())
+};
 
