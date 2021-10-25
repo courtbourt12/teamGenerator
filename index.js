@@ -6,8 +6,8 @@ const util = require("util");
 
 
 
-firstMember() {
-    inquirer
+const firstMember = () => {
+    return inquirer
     .prompt([
         {
             type: "input",
@@ -45,10 +45,20 @@ firstMember() {
             message: "Would you like to...",
             choices: ["Add an engineer?", "Add an intern?", "Finish building your team?"]
         }
-])}
+])
+.then((answers) => {
+    if ((answers.another) === "Add an engineer?") {
+        engineer()
+    } else if ((answers.another) === "Add an intern?") {
+        intern()
+    } else if ((answers.another) === "Finish building your team?") {
+        writeIt()
+    }
+})
+}
 
-engineer() {
-    inquirer
+const engineer = () => {
+    return inquirer
     .prompt([
         {
             type: "input",
@@ -86,10 +96,20 @@ engineer() {
             message: "Would you like to...",
             choices: ["Add an engineer?", "Add an intern?", "Finish building your team?"]
         }
-])}
+])
+.then((answers) => {
+    if ((answers.another) === "Add an engineer?") {
+        engineer()
+    } else if ((answers.another) === "Add an intern?") {
+        intern()
+    } else if ((answers.another) === "Finish building your team?") {
+        writeIt()
+    }
+})
+}
 
-intern() {
-    inquirer
+const intern = () => {
+    return inquirer
     .prompt([
         {
             type: "input",
@@ -127,17 +147,17 @@ intern() {
             message: "Would you like to...",
             choices: ["Add an engineer?", "Add an intern?", "Finish building your team?"]
         }
-])}
-
-if (answers.another === "Add an engineer?") {
-    this.firstMember()
-} else if (answers.another === "Add an intern?") {
-    this.firstMember()
+])
+.then((answers) => {
+    if ((answers.another) === "Add an engineer?") {
+        engineer()
+    } else if ((answers.another) === "Add an intern?") {
+        intern()
+    } else if ((answers.another) === "Finish building your team?") {
+        writeIt()
+    }
+})
 }
-
-
-
-
 
 
 const addMember = require("./Questions/AddAMember");
@@ -145,7 +165,6 @@ const writeHTML = util.promisify(fs.writeFile);
 
 const init = () => {
     firstMember()
-    
 
 }
  init();
