@@ -170,7 +170,7 @@ const intern = () => {
 ])
 .then((answers) => {
     const {interning, IImail, Igithub, Inumber, Iid} = answers;
-    const myIntern = new theIntern (interning, IImail, Igithub, Inumber, Iid);
+    const myIntern = new theInterns (interning, IImail, Igithub, Inumber, Iid);
     theEmployees.push(myIntern);
     if ((answers.another) === "Add an engineer?") {
         engineer()
