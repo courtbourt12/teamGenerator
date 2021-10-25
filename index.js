@@ -4,7 +4,9 @@ const inquirer = require("inquirer");
 const fs = require("fs");
 const util = require("util");
 
-
+const theManager = [];
+const theEngineers = [];
+const theInterns = [];
 
 const firstMember = () => {
     return inquirer
@@ -35,11 +37,6 @@ const firstMember = () => {
             message: "What is their employee ID?"
         },
         {
-            type: "input",
-            name: "email",
-            message: "What is their email address?"
-        },
-        {
             type: "list",
             name: "another",
             message: "Would you like to...",
@@ -47,12 +44,14 @@ const firstMember = () => {
         }
 ])
 .then((answers) => {
+    theManager.push('Managers:', answers)
+    console.log(theManager);
     if ((answers.another) === "Add an engineer?") {
         engineer()
     } else if ((answers.another) === "Add an intern?") {
         intern()
-    } else if ((answers.another) === "Finish building your team?") {
-        writeIt()
+    // } else if ((answers.another) === "Finish building your team?") {
+    //     writeIt()
     }
 })
 }
@@ -86,11 +85,6 @@ const engineer = () => {
             message: "What is their employee ID?"
         },
         {
-            type: "input",
-            name: "email",
-            message: "What is their email address?"
-        },
-        {
             type: "list",
             name: "another",
             message: "Would you like to...",
@@ -98,14 +92,17 @@ const engineer = () => {
         }
 ])
 .then((answers) => {
+    theEngineers.push('Engineers:', answers)
+    console.log(theEngineers);
     if ((answers.another) === "Add an engineer?") {
         engineer()
     } else if ((answers.another) === "Add an intern?") {
         intern()
-    } else if ((answers.another) === "Finish building your team?") {
-        writeIt()
-    }
-})
+    // } else if ((answers.another) === "Finish building your team?") {
+    //     writeIt()
+    // }
+}})
+// .then((answers) => writeHTML("script.HTML", addMember(answers)))
 }
 
 const intern = () => {
@@ -137,11 +134,6 @@ const intern = () => {
             message: "What is their employee ID?"
         },
         {
-            type: "input",
-            name: "email",
-            message: "What is their email address?"
-        },
-        {
             type: "list",
             name: "another",
             message: "Would you like to...",
@@ -149,14 +141,17 @@ const intern = () => {
         }
 ])
 .then((answers) => {
+    theInterns.push('Interns:', answers)
+    console.log(theInterns);
     if ((answers.another) === "Add an engineer?") {
         engineer()
     } else if ((answers.another) === "Add an intern?") {
         intern()
-    } else if ((answers.another) === "Finish building your team?") {
-        writeIt()
-    }
-})
+    // } else if ((answers.another) === "Finish building your team?") {
+    //     writeIt()
+    // }
+}})
+// .then((answers) => writeHTML("script.HTML", addMember(answers)))
 }
 
 
@@ -171,7 +166,7 @@ const init = () => {
 
 
 
-const writeIt = () => {
-writeHTML("script.HTML", addMember(answers))
-};
+// const writeIt = () => {
+// writeHTML("script.HTML", addMember(answers))
+// };
 
